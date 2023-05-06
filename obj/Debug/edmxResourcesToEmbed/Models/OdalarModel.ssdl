@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Otel_OdaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_Kategori">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kategori" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TBL_Oda">
+    <Key>
+      <PropertyRef Name="OdaID" />
+    </Key>
+    <Property Name="OdaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OdaAd" Type="varchar" MaxLength="50" />
+    <Property Name="OdaOzellik" Type="varchar" MaxLength="200" />
+    <Property Name="OdaFiyat" Type="int" />
+    <Property Name="Kategori" Type="int" />
+  </EntityType>
+  <Association Name="FK_TBL_Oda_TBL_Kategori">
+    <End Role="TBL_Kategori" Type="Self.TBL_Kategori" Multiplicity="0..1" />
+    <End Role="TBL_Oda" Type="Self.TBL_Oda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Kategori">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBL_Oda">
+        <PropertyRef Name="Kategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Otel_OdaModelStoreContainer">
+    <EntitySet Name="TBL_Kategori" EntityType="Self.TBL_Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_Oda" EntityType="Self.TBL_Oda" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBL_Oda_TBL_Kategori" Association="Self.FK_TBL_Oda_TBL_Kategori">
+      <End Role="TBL_Kategori" EntitySet="TBL_Kategori" />
+      <End Role="TBL_Oda" EntitySet="TBL_Oda" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

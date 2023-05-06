@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Otel_RandevuModelStoreContainer" CdmEntityContainer="Otel_RandevuEntities">
+    <EntitySetMapping Name="TBL_Mod">
+      <EntityTypeMapping TypeName="Otel_RandevuModel.TBL_Mod">
+        <MappingFragment StoreEntitySet="TBL_Mod">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Mod" ColumnName="Mod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Randevu">
+      <EntityTypeMapping TypeName="Otel_RandevuModel.TBL_Randevu">
+        <MappingFragment StoreEntitySet="TBL_Randevu">
+          <ScalarProperty Name="RandevuId" ColumnName="RandevuId" />
+          <ScalarProperty Name="RandevuAd" ColumnName="RandevuAd" />
+          <ScalarProperty Name="RandevuTel" ColumnName="RandevuTel" />
+          <ScalarProperty Name="RandevuKisi" ColumnName="RandevuKisi" />
+          <ScalarProperty Name="RandevuGece" ColumnName="RandevuGece" />
+          <ScalarProperty Name="Mod" ColumnName="Mod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

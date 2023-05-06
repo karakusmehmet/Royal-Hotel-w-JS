@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="For_DropdownModelStoreContainer" CdmEntityContainer="For_DropdownEntities1">
+    <EntitySetMapping Name="TBL_O">
+      <EntityTypeMapping TypeName="For_DropdownModel.TBL_O">
+        <MappingFragment StoreEntitySet="TBL_O">
+          <ScalarProperty Name="odaid" ColumnName="odaid" />
+          <ScalarProperty Name="odaad" ColumnName="odaad" />
+          <ScalarProperty Name="turid" ColumnName="turid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Tur">
+      <EntityTypeMapping TypeName="For_DropdownModel.TBL_Tur">
+        <MappingFragment StoreEntitySet="TBL_Tur">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Otel_OdaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBL_Kategori">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kategori" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_Oda" Relationship="Self.FK_TBL_Oda_TBL_Kategori" FromRole="TBL_Kategori" ToRole="TBL_Oda" />
+  </EntityType>
+  <EntityType Name="TBL_Oda">
+    <Key>
+      <PropertyRef Name="OdaID" />
+    </Key>
+    <Property Name="OdaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OdaAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OdaOzellik" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OdaFiyat" Type="Int32" />
+    <Property Name="Kategori" Type="Int32" />
+    <NavigationProperty Name="TBL_Kategori" Relationship="Self.FK_TBL_Oda_TBL_Kategori" FromRole="TBL_Oda" ToRole="TBL_Kategori" />
+  </EntityType>
+  <Association Name="FK_TBL_Oda_TBL_Kategori">
+    <End Role="TBL_Kategori" Type="Self.TBL_Kategori" Multiplicity="0..1" />
+    <End Role="TBL_Oda" Type="Self.TBL_Oda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Kategori">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBL_Oda">
+        <PropertyRef Name="Kategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Otel_OdaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_Kategori" EntityType="Self.TBL_Kategori" />
+    <EntitySet Name="TBL_Oda" EntityType="Self.TBL_Oda" />
+    <AssociationSet Name="FK_TBL_Oda_TBL_Kategori" Association="Self.FK_TBL_Oda_TBL_Kategori">
+      <End Role="TBL_Kategori" EntitySet="TBL_Kategori" />
+      <End Role="TBL_Oda" EntitySet="TBL_Oda" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

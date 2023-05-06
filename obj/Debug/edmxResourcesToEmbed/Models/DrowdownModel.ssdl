@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="For_DropdownModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_O">
+    <Key>
+      <PropertyRef Name="odaid" />
+    </Key>
+    <Property Name="odaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="odaad" Type="varchar" MaxLength="50" />
+    <Property Name="turid" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_Tur">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_TBL_O_TBL_Tur">
+    <End Role="TBL_Tur" Type="Self.TBL_Tur" Multiplicity="0..1" />
+    <End Role="TBL_O" Type="Self.TBL_O" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Tur">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TBL_O">
+        <PropertyRef Name="turid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="For_DropdownModelStoreContainer">
+    <EntitySet Name="TBL_O" EntityType="Self.TBL_O" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_Tur" EntityType="Self.TBL_Tur" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBL_O_TBL_Tur" Association="Self.FK_TBL_O_TBL_Tur">
+      <End Role="TBL_Tur" EntitySet="TBL_Tur" />
+      <End Role="TBL_O" EntitySet="TBL_O" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

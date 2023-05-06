@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Otel_RandevuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_Mod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mod" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBL_Randevu">
+    <Key>
+      <PropertyRef Name="RandevuId" />
+    </Key>
+    <Property Name="RandevuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RandevuAd" Type="varchar" MaxLength="50" />
+    <Property Name="RandevuTel" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="RandevuKisi" Type="int" />
+    <Property Name="RandevuGece" Type="int" />
+    <Property Name="Mod" Type="int" />
+  </EntityType>
+  <Association Name="FK_TBL_Randevu_TBL_Mod">
+    <End Role="TBL_Mod" Type="Self.TBL_Mod" Multiplicity="0..1" />
+    <End Role="TBL_Randevu" Type="Self.TBL_Randevu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Mod">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBL_Randevu">
+        <PropertyRef Name="Mod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Otel_RandevuModelStoreContainer">
+    <EntitySet Name="TBL_Mod" EntityType="Self.TBL_Mod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_Randevu" EntityType="Self.TBL_Randevu" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBL_Randevu_TBL_Mod" Association="Self.FK_TBL_Randevu_TBL_Mod">
+      <End Role="TBL_Mod" EntitySet="TBL_Mod" />
+      <End Role="TBL_Randevu" EntitySet="TBL_Randevu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="For_DropdownModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_O">
+          <Key>
+            <PropertyRef Name="odaid" />
+          </Key>
+          <Property Name="odaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="odaad" Type="varchar" MaxLength="50" />
+          <Property Name="turid" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Tur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_TBL_O_TBL_Tur">
+          <End Role="TBL_Tur" Type="Self.TBL_Tur" Multiplicity="0..1" />
+          <End Role="TBL_O" Type="Self.TBL_O" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Tur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_O">
+              <PropertyRef Name="turid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="For_DropdownModelStoreContainer">
+          <EntitySet Name="TBL_O" EntityType="Self.TBL_O" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Tur" EntityType="Self.TBL_Tur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_O_TBL_Tur" Association="Self.FK_TBL_O_TBL_Tur">
+            <End Role="TBL_Tur" EntitySet="TBL_Tur" />
+            <End Role="TBL_O" EntitySet="TBL_O" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="For_DropdownModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_O">
+          <Key>
+            <PropertyRef Name="odaid" />
+          </Key>
+          <Property Name="odaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="odaad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="turid" Type="Int32" />
+          <NavigationProperty Name="TBL_Tur" Relationship="Self.FK_TBL_O_TBL_Tur" FromRole="TBL_O" ToRole="TBL_Tur" />
+        </EntityType>
+        <EntityType Name="TBL_Tur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_O" Relationship="Self.FK_TBL_O_TBL_Tur" FromRole="TBL_Tur" ToRole="TBL_O" />
+        </EntityType>
+        <Association Name="FK_TBL_O_TBL_Tur">
+          <End Role="TBL_Tur" Type="Self.TBL_Tur" Multiplicity="0..1" />
+          <End Role="TBL_O" Type="Self.TBL_O" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Tur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_O">
+              <PropertyRef Name="turid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="For_DropdownEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_O" EntityType="Self.TBL_O" />
+          <EntitySet Name="TBL_Tur" EntityType="Self.TBL_Tur" />
+          <AssociationSet Name="FK_TBL_O_TBL_Tur" Association="Self.FK_TBL_O_TBL_Tur">
+            <End Role="TBL_Tur" EntitySet="TBL_Tur" />
+            <End Role="TBL_O" EntitySet="TBL_O" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="For_DropdownModelStoreContainer" CdmEntityContainer="For_DropdownEntities1">
+          <EntitySetMapping Name="TBL_O">
+            <EntityTypeMapping TypeName="For_DropdownModel.TBL_O">
+              <MappingFragment StoreEntitySet="TBL_O">
+                <ScalarProperty Name="odaid" ColumnName="odaid" />
+                <ScalarProperty Name="odaad" ColumnName="odaad" />
+                <ScalarProperty Name="turid" ColumnName="turid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Tur">
+            <EntityTypeMapping TypeName="For_DropdownModel.TBL_Tur">
+              <MappingFragment StoreEntitySet="TBL_Tur">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

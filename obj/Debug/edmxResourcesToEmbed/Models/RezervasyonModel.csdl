@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Otel_RezervasyonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TBL_Mod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_Rezervasyon" Relationship="Self.FK_TBL_Rezervasyon_TBL_Mod" FromRole="TBL_Mod" ToRole="TBL_Rezervasyon" />
+  </EntityType>
+  <EntityType Name="TBL_Rezervasyon">
+    <Key>
+      <PropertyRef Name="RezervasyonID" />
+    </Key>
+    <Property Name="RezervasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RezervasyonAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RezervasyonSecID" Type="Int32" />
+    <Property Name="RezervasyonTel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="RezervasyonKisi" Type="Int32" />
+    <Property Name="RezervasyonGece" Type="Int32" />
+    <Property Name="RezervasyonModID" Type="Int32" />
+    <NavigationProperty Name="TBL_Mod" Relationship="Self.FK_TBL_Rezervasyon_TBL_Mod" FromRole="TBL_Rezervasyon" ToRole="TBL_Mod" />
+    <NavigationProperty Name="TBL_Sec" Relationship="Self.FK_TBL_Rezervasyon_TBL_Sec" FromRole="TBL_Rezervasyon" ToRole="TBL_Sec" />
+  </EntityType>
+  <EntityType Name="TBL_Sec">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Oda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_Rezervasyon" Relationship="Self.FK_TBL_Rezervasyon_TBL_Sec" FromRole="TBL_Sec" ToRole="TBL_Rezervasyon" />
+  </EntityType>
+  <Association Name="FK_TBL_Rezervasyon_TBL_Mod">
+    <End Role="TBL_Mod" Type="Self.TBL_Mod" Multiplicity="0..1" />
+    <End Role="TBL_Rezervasyon" Type="Self.TBL_Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Mod">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBL_Rezervasyon">
+        <PropertyRef Name="RezervasyonModID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_Rezervasyon_TBL_Sec">
+    <End Role="TBL_Sec" Type="Self.TBL_Sec" Multiplicity="0..1" />
+    <End Role="TBL_Rezervasyon" Type="Self.TBL_Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Sec">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBL_Rezervasyon">
+        <PropertyRef Name="RezervasyonSecID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Otel_RezervasyonEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TBL_Mod" EntityType="Self.TBL_Mod" />
+    <EntitySet Name="TBL_Rezervasyon" EntityType="Self.TBL_Rezervasyon" />
+    <EntitySet Name="TBL_Sec" EntityType="Self.TBL_Sec" />
+    <AssociationSet Name="FK_TBL_Rezervasyon_TBL_Mod" Association="Self.FK_TBL_Rezervasyon_TBL_Mod">
+      <End Role="TBL_Mod" EntitySet="TBL_Mod" />
+      <End Role="TBL_Rezervasyon" EntitySet="TBL_Rezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_Rezervasyon_TBL_Sec" Association="Self.FK_TBL_Rezervasyon_TBL_Sec">
+      <End Role="TBL_Sec" EntitySet="TBL_Sec" />
+      <End Role="TBL_Rezervasyon" EntitySet="TBL_Rezervasyon" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

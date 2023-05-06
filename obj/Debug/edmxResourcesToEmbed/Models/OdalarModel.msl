@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Otel_OdaModelStoreContainer" CdmEntityContainer="Otel_OdaEntities">
+    <EntitySetMapping Name="TBL_Kategori">
+      <EntityTypeMapping TypeName="Otel_OdaModel.TBL_Kategori">
+        <MappingFragment StoreEntitySet="TBL_Kategori">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Oda">
+      <EntityTypeMapping TypeName="Otel_OdaModel.TBL_Oda">
+        <MappingFragment StoreEntitySet="TBL_Oda">
+          <ScalarProperty Name="OdaID" ColumnName="OdaID" />
+          <ScalarProperty Name="OdaAd" ColumnName="OdaAd" />
+          <ScalarProperty Name="OdaOzellik" ColumnName="OdaOzellik" />
+          <ScalarProperty Name="OdaFiyat" ColumnName="OdaFiyat" />
+          <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
